@@ -1,16 +1,64 @@
-# React + Vite
+Vishwasatra Real Estate – MERN Stack Project
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A full-stack real estate web application built using the MERN Stack with Admin authentication and dynamic content management.
 
-Currently, two official plugins are available:
+Live Frontend: (project url)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+  🌐 https://vishwasatra-realestate.netlify.app/
 
-## React Compiler
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Tech Stack:-
 
-## Expanding the ESLint configuration
+Frontend
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+* React (Vite)    * React Router DOM   * Axios   * Bootstrap 5 
+
+ Backend    
+
+* Node.js   * Express.js   * MongoDB   * Mongoose   * JWT Authentication
+
+API Endpoints =:
+
+admin username = admin@gmail.com
+admin password = 1234
+admin panel URL = https://vishwasatra-realestate.netlify.app/admin
+admin dashboard URL = https://vishwasatra-realestate.netlify.app/admin-dashboard
+
+
+Method	Endpoint	Description
+POST	/api/login	Admin Login
+Content Management
+Method	     Endpoint	          Description
+GET	/api/getAllTexts	 Get content
+PUT	/api/updateText	        Update content
+
+
+✨ Features
+🔐 Admin Authentication
+
+Secure login system
+
+JWT token based authentication
+
+Protected Admin Route
+
+useNavigate for routing
+
+📝 Admin Panel
+
+Update dynamic website content
+
+Fetch existing content from database
+
+Real-time data update using Axios
+
+🌐 Deployment
+
+Frontend deployed on Netlify
+
+Backend deployed on render
+
+MongoDB Atlas cloud database
+
+
+
