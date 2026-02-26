@@ -50,7 +50,7 @@ function AdminHero() {
         // console.log(twobhk);
         // console.log(address);
 
-        let res = await axios.put("http://localhost:8000/api/updateherosection",{
+        let res = await axios.put("https://vishwasatra-backend.onrender.com/updateherosection",{
             onebhk,
             twobhk,
             address,

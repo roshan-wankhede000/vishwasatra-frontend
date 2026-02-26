@@ -10,7 +10,7 @@ const AdminAboutProject = () => {
   const handleSubmit = async(e) => {
     e.preventDefault();
 
-    let res = await axios.put("http://localhost:8000/api/adminabout",{
+    let res = await axios.put("https://vishwasatra-backend.onrender.com/api/adminabout",{
       text1,text2
     })
     alert(res.data.message)
