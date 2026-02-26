@@ -8,7 +8,7 @@ function Home() {
   let [hero, setHero] = useState('')
 
   async function getHero() {
-    let res = await axios.get("http://localhost:8000/api/getherosection")
+    let res = await axios.get("https://vishwasatra-backend.onrender.com/api/getherosection")
     setHero(res.data.herosection[0])
     // console.log(res.data.herosection); 
   }

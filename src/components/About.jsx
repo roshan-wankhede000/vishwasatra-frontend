@@ -5,14 +5,14 @@ function About() {
       let [about, setAbout] = useState('')
     
         async function getAbout() {
-        let res = await axios.get("http://localhost:8000/api/getAllTexts")
+        let res = await axios.get("https://vishwasatra-backend.onrender.com/api/getAllTexts")
         setAbout(res.data.data)
         console.log(res.data.data); 
       }
 
       useEffect(()=>{
         getAbout()
-      })
+      },[])
   return (
     <> 
            <section className="about-section">
