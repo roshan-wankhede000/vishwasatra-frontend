@@ -1,88 +1,93 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from 'axios'
 
-const Admin = () => {
-  const [formData, setFormData] = useState({
-    text1: "",
-    text2: "",
+function AdminLogin() {
+    let navigate = useNavigate()
+  const [form, setForm] = useState({
+    email: "",
+    password: "",
   });
 
-  const API = "http://localhost:8000/api"; // change when deployed
+//   const [showPassword, setShowPassword] = useState(false);
 
-  // ✅ GET existing data
-  useEffect(() => {
-    axios.get(`${API}/getAllTexts`)
-      .then((res) => {
-        if (res.data.length > 0) {
-          setFormData({
-            text1: res.data[0].text1,
-            text2: res.data[0].text2,
-          });
-        }
-      })
-      .catch((err) => console.log(err));
-  }, []);
-
-  // handle change
   const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
+    setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  // ✅ UPDATE data
-  const handleSubmit = async (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
 
-    try {
-      const res = await axios.put("https://vishwasatra-backend.onrender.com/api/updateText", formData);
-      alert(res.data.message);
-    } catch (error) {
-      console.log(error);
-      alert("Error updating data ❌");
-    }
+    let res = await axios.post("https://vishwasatra-backend.onrender.com/api/userlogin",form)
+
+   console.log(res.data);
+   alert(res.data.message)
+
+   localStorage.setItem(
+    'token',res.data.token
+   )
+   navigate("/admin-dashboard")
+    
   };
 
   return (
-    <div className="admin-wrapper d-flex align-items-center justify-content-center">
-      <div className="admin-card shadow-lg p-4">
-        <h2 className="text-center mb-4 fw-bold text-primary">
-          Admin Panel
-        </h2>
+    <div className="login-wrapper d-flex align-items-center justify-content-center">
+      <div className="card login-card shadow p-4">
+        <h3 className="text-center mb-4">Admin Login</h3>
 
         <form onSubmit={handleSubmit}>
+          {/* Email */}
           <div className="mb-3">
-            <label className="form-label fw-semibold">First Text</label>
-            <textarea
-              name="text1"
-              className="form-control custom-input"
-              rows="4"
-              value={formData.text1}
+            <label className="form-label">Email address</label>
+            <input
+              type="email"
+              className="form-control"
+              name="email"
+              value={form.email}
               onChange={handleChange}
-              required
-            ></textarea>
+              placeholder="Enter email"
+            />
           </div>
 
-          <div className="mb-4">
-            <label className="form-label fw-semibold">Second Text</label>
-            <textarea
-              name="text2"
-              className="form-control custom-input"
-              rows="4"
-              value={formData.text2}
-              onChange={handleChange}
-              required
-            ></textarea>
+          {/* Password */}
+          <div className="mb-3">
+            <label className="form-label">Password</label>
+            <div className="input-group">
+              <input
+                type="password"
+                className="form-control"
+                name="password"
+                value={form.password}
+                onChange={handleChange}
+                autoComplete="password"
+                placeholder="Enter password"
+              />
+              {/* <button
+                type="button"
+                className="btn btn-outline-secondary"
+                onClick={() => setShowPassword(!showPassword)}
+              >
+                {showPassword ? "Hide" : "Show"}
+              </button> */}
+            </div>
           </div>
 
-          <button type="submit" className="btn btn-primary w-100 fw-bold">
-            Update Data
+          {/* Remember Me */}
+          <div className="mb-3 form-check">
+            <input type="checkbox" className="form-check-input" />
+            <label className="form-check-label">
+              Remember me
+            </label>
+          </div>
+
+          {/* Button */}
+          <button type="submit" className="btn btn-primary w-100">
+            Login
           </button>
         </form>
       </div>
     </div>
   );
-};
+}
 
-export default Admin;
+export default AdminLogin;
